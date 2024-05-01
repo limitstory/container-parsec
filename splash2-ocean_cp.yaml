@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: splash2-ocean_cp
+  labels:
+    app: ocean_cp
+spec:
+  containers:
+  - name: ocean_cp
+    image: spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "splash2.ocean_cp", "-i", "native"]    
+    resources:
+      requests:
+        memory: 2000Mi
+      limits:
+        memory: 8000Mi

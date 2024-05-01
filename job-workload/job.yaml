@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parsec-job
+  labels:
+    app: parsec
+spec:
+  backoffLimit: 10000
+  completions: 5
+  parallelism: 5
+  template:
+    metadata:
+      labels:
+        app: parsec
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: parsec
+        image: docker.io/spirals/parsec-3.0:latest
+        imagePullPolicy: IfNotPresent
+        args: ["-a", "run", "-p", "parsec.raytrace", "-i", "native"]
+        resources:
+          requests:
+            memory: 300Mi
+          limits:
+            cpu: 200m
+            memory: 8000Mi

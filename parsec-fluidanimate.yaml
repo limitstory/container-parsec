@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: parsec-fluidanimate
+  labels:
+    app: fluidanimate
+spec:
+  containers:
+  - name: fluidanimate
+    image: docker.io/spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "parsec.fluidanimate", "-i", "native"]    
+    resources:
+      requests:
+        memory: 10000Mi
+      limits:
+        memory: 16000Mi
+  restartPolicy: OnFailure

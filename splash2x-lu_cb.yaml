@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: splash2x-lu_cb
+  labels:
+    app: lu_cb
+spec:
+  containers:
+  - name: lu_cb
+    image: spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "splash2x.lu_cb", "-i", "native"]    
+    resources:
+      requests:
+        memory: 2000Mi
+      limits:
+        memory: 8000Mi

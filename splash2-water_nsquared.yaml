@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: splash2-water_nsquared
+  labels:
+    app: water_nsquared
+spec:
+  containers:
+  - name: water_nsquared
+    image: spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "splash2.water_nsquared", "-i", "native"]    
+    resources:
+      requests:
+        memory: 2000Mi
+      limits:
+        memory: 8000Mi

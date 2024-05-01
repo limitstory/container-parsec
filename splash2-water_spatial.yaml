@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: splash2-water_spatial
+  labels:
+    app: water_spatial
+spec:
+  containers:
+  - name: water_spatial
+    image: spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "splash2.water_spatial", "-i", "native"]    
+    resources:
+      requests:
+        memory: 2000Mi
+      limits:
+        memory: 8000Mi

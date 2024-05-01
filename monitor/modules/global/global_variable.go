@@ -1,0 +1,68 @@
+package modules
+
+const ENDPOINT string = "unix:///var/run/crio/crio.sock"
+const NODENAME string = "limitstory-virtualbox"
+
+const MAX_VALUE int = 10000
+const MIN_VALUE int = -10000
+
+const DEFAULT_CPU_QUOTA int64 = 0
+const LIMIT_CPU_QUOTA int64 = 1000
+
+const CORES_TO_MILLICORES float64 = 1000.0
+const NANOCORES_TO_MILLICORES int64 = 1000000
+const NANOSECONDS int64 = 1000000000
+
+const MAX_TIME_WINDOW int64 = 60
+const SCALE_DOWN_THRESHOLD int = 10
+
+const CONTAINER_MEMORY_SLO_UPPER float64 = 0.9
+const CONTAINER_MEMORY_SLO float64 = 0.8
+const CONTAINER_MEMORY_SLO_LOWER float64 = 0.7
+const MAX_MEMORY_USAGE_THRESHOLD float64 = 0.97
+
+const CONTAINER_MEMORY_USAGE_THRESHOLD float64 = 0.95
+
+const MIN_SIZE_PER_CONTAINER int64 = 5 * 1048576 // 1Mibibyte = 1024*1024 = 1048576
+
+const TIMEOUT_INTERVAL int32 = 3
+
+// AvgConMemUtil, AvgNodeMemUtil, VarConMemUtil
+// AvgCpuUtil, PriorityID, Penalty, Reward
+var PRIORITY_VECTOR = []int64{1, 1, 1, 1, 1, 1, 1}
+
+var NumOfTotalScale int64 = 0
+
+type PriorityContainer struct {
+	PodName       string
+	ContainerName string
+	ContainerId   string
+	Priority      float64
+}
+
+type ScaleCandidateContainer struct {
+	PodName       string
+	PodId         string
+	ContainerName string
+	ContainerId   string
+	ContainerData *ContainerData
+	ScaleSize     int64
+}
+
+type PauseContainer struct {
+	PodName       string
+	PodId         string
+	ContainerName string
+	ContainerId   string
+	IsCheckpoint  bool
+	ContainerData *ContainerData
+}
+
+type CheckpointMetaData struct {
+	PodName            string
+	ContainerName      string
+	CheckpointName     string
+	MemoryLimitInBytes int64
+	RemoveStartTime    int64
+	RemoveEndTime      int64
+}

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: splash2x-volrend
+  labels:
+    app: volrend
+spec:
+  containers:
+  - name: volrend
+    image: docker.io/spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "splash2x.volrend", "-i", "native"]    
+    resources:
+      requests:
+        memory: 10000Mi
+      limits:
+        memory: 16000Mi
+  restartPolicy: OnFailure

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: parsec-x264
+  labels:
+    app: x264
+spec:
+  containers:
+  - name: x264
+    image: docker.io/spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "parsec.x264", "-i", "native"]    
+    resources:
+      requests:
+        memory: 10000Mi
+      limits:
+        memory: 16000Mi
+  restartPolicy: OnFailure

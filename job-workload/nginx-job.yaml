@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nginx-job
+  labels:
+    app: nginx
+spec:
+  backoffLimit: 10000
+  completions: 5
+  parallelism: 5
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: nginx
+        image: docker.io/nginx
+        imagePullPolicy: IfNotPresent    
+        resources:
+          requests:
+            memory: 100Mi
+          limits:
+            memory: 160Mi
+            cpu: 200m
+      restartPolicy: Never

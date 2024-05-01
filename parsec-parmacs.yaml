@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: parsec-parmacs
+  labels:
+    app: parmacs
+spec:
+  containers:
+  - name: parmacs
+    image: docker.io/spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "parsec.parmacs", "-i", "native"]    
+    resources:
+      requests:
+        memory: 10000Mi
+      limits:
+        memory: 16000Mi
+  restartPolicy: OnFailure

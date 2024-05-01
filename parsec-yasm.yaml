@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: parsec-yasm
+  labels:
+    app: yasm
+spec:
+  containers:
+  - name: yasm
+    image: docker.io/spirals/parsec-3.0:latest
+    imagePullPolicy: IfNotPresent    
+    args: ["-a", "run", "-p", "parsec.yasm", "-i", "native"]    
+    resources:
+      requests:
+        memory: 10000Mi
+      limits:
+        memory: 16000Mi
+  restartPolicy: OnFailure
